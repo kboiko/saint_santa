@@ -23,6 +23,8 @@ defmodule SaintSantaWeb do
 
       import Plug.Conn
       import SaintSantaWeb.Gettext
+      import SaintSantaWeb.Auth, only: [authenticate_user: 2]
+
       alias SaintSantaWeb.Router.Helpers, as: Routes
     end
   end
@@ -36,6 +38,13 @@ defmodule SaintSantaWeb do
       # Import convenience functions from controllers
       import Phoenix.Controller,
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+
+      # Use all HTML functionality (forms, tags, etc)
+      use Phoenix.HTML
+
+      import SaintSantaWeb.ErrorHelpers
+      import SaintSantaWeb.Gettext
+      alias SaintSantaWeb.Router.Helpers, as: Routes
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
@@ -62,7 +71,6 @@ defmodule SaintSantaWeb do
   def router do
     quote do
       use Phoenix.Router
-
       import Plug.Conn
       import Phoenix.Controller
       import Phoenix.LiveView.Router

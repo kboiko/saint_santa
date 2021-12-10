@@ -1,0 +1,7 @@
+<ul>
+    <li><b>Name:</b> <%= @user.name %> </li>
+    <li><b>Id:</b> <%= @user.id %> </li>
+    <li><b>Username:</b> <%= @user.username %> </li>
+</ul>
+
+

@@ -5,11 +5,9 @@ defmodule SaintSantaWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :fetch_flash
     plug :put_root_layout, {SaintSantaWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug SaintSantaWeb.Auth
   end
 
   pipeline :api do
@@ -20,22 +18,13 @@ defmodule SaintSantaWeb.Router do
     pipe_through :browser
 
     live "/", PageLive, :index
-
-    get "/", PageController, :index
-    resources "/users", UserController, only: [:index, :show, :create, :new]
-    resources "/sessions", SessionController, only: [:create, :new, :delete]
-  end
-
-  scope "/manage", SaintSantaWeb do
-    pipe_through [:browser, :authenticate_user]
-
-    resources "/videos", VideoController
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", SaintSantaWeb do
   #   pipe_through :api
   # end
+
   # Enables LiveDashboard only for development
   #
   # If you want to use the LiveDashboard in production, you should put

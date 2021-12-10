@@ -1,0 +1,13 @@
+<h1>Listing Users</h1>
+<table>
+	<%= for user <- @users do %>
+	<tr>
+		<td> <b><%=user.name %> </b>(<%= user.id %>)</td>
+	<tr>
+		<td><%= render "user.html", user: user %></td>
+		<td><%= link "View", to: Routes.user_path(@conn, :show, user.id) %></td>
+	</tr>
+	</tr>
+	<% end %>
+</table>
+<td><%= link "Create new user", to: Routes.user_path(@conn, :new) %></td>
